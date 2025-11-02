@@ -6,8 +6,22 @@ import (
 )
 
 func main() {
-	var userHeight = 1.8
-	var userWeight float64 = 70
-	var IMT = userWeight / math.Pow(userHeight, 2)
-	fmt.Printf("Your index %.0f", IMT)
+	var height, weight float64
+	fmt.Print("Input your height in cm: ")
+	fmt.Scan(&height)
+	fmt.Print("Input your weight in kg: ")
+	fmt.Scan(&weight)
+	result := showResult(calculateIMT(height, weight))
+	fmt.Print(result)
+}
+
+func calculateIMT(height, weight float64) float64 {
+	const IMTPower = 2
+	heightInMeters := height / 100
+	IMT := weight / math.Pow(heightInMeters, IMTPower)
+	return IMT
+}
+
+func showResult(IMT float64) string {
+	return fmt.Sprintf("Your index is %.2f", IMT)
 }
